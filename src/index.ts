@@ -6,6 +6,8 @@ import { createFolders } from "./utils/create-folders";
 import { createRoutesReact } from "./utils/create-routes-react";
 import { updateTsconfig } from "./utils/update-tsconfig";
 import { updateViteConfig } from "./utils/update-vite-config";
+import { updateAppTsx } from "./utils/update-app-tsx";
+import { updateHtml } from "./utils/update-html";
 
 async function main() {
   const projectName = await createVite.runCommand();
@@ -15,6 +17,8 @@ async function main() {
   await createRoutesReact.runCommand(projectPath);
   await updateTsconfig.runCommand(projectPath);
   await updateViteConfig.runCommand(projectPath);
+  await updateAppTsx.runCommand(projectPath);
+  await updateHtml.runCommand(projectPath, projectName);
 
   console.log(`✅ Projeto ${projectName} criado com sucesso!`);
   console.log(`\n👉 cd ${projectName}`);

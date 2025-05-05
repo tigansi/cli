@@ -36,7 +36,7 @@ export const createVite = {
     try {
       await execa(
         "npx",
-        ["create-vite@latest", projectName, "--template", "react-swc"],
+        ["create-vite@latest", projectName, "--template", "react-swc-ts"],
         { stdio: "inherit" }
       );
     } catch (error) {
