@@ -1,13 +1,15 @@
 #!/usr/bin/env node
 
-import { createVite } from "./utils/create-vite";
-import { installDep } from "./utils/install-dep";
-import { createFolders } from "./utils/create-folders";
-import { createRoutesReact } from "./utils/create-routes-react";
-import { updateTsconfig } from "./utils/update-tsconfig";
-import { updateViteConfig } from "./utils/update-vite-config";
-import { updateAppTsx } from "./utils/update-app-tsx";
-import { updateHtml } from "./utils/update-html";
+import { createVite } from "./actions/create-vite";
+import { installDep } from "./actions/install-dep";
+import { createFolders } from "./actions/create-folders";
+import { createRoutesReact } from "./actions/create-routes-react";
+import { updateTsconfig } from "./actions/update-tsconfig";
+import { updateViteConfig } from "./actions/update-vite-config";
+import { updateAppTsx } from "./actions/update-app-tsx";
+import { updateHtml } from "./actions/update-html";
+import { createEnvFiles } from "./actions/create-env-files";
+import { updatePackageJson } from "./actions/update-packgejson";
 
 async function main() {
   const projectName = await createVite.runCommand();
@@ -19,6 +21,8 @@ async function main() {
   await updateViteConfig.runCommand(projectPath);
   await updateAppTsx.runCommand(projectPath);
   await updateHtml.runCommand(projectPath, projectName);
+  await createEnvFiles.runCommand(projectPath);
+  await updatePackageJson.runCommand(projectPath);
 
   console.log(`✅ Projeto ${projectName} criado com sucesso!`);
   console.log(`\n👉 cd ${projectName}`);
