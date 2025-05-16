@@ -10,11 +10,11 @@ export const createEnvFiles = {
 
     const envDevContent =
       `
-VITE_APP_HOST_SERVER=
 VITE_USER_ACESSO_HOMOL=
 VITE_NOME_ACESSO_HOMOL=
 VITE_EMAIL_ACESSO_HOMOL=
 VITE_ID_WS=
+VITE_APP_HOST_SERVER=http://localhost:3000/
     `.trim() + "\n";
 
     const envProdContent = ``; // pode incluir comentários, se desejar

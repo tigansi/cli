@@ -8,14 +8,11 @@ export const updateAppTsx = {
     // 1. Sobrescrever index.css
     const indexCssPath = path.join(projectPath, "src", "index.css");
     const indexCssContent = `
-    @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-    
-    * {
-      font-family: "Poppins", sans-serif;
-    }
-    margin: 0
-    padding: 0
-        `.trim();
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+}`.trim();
 
     await fs.writeFile(indexCssPath, indexCssContent, "utf-8");
     console.log("✅ index.css atualizado");
@@ -33,24 +30,41 @@ export const updateAppTsx = {
     // 3. Sobrescrever App.tsx
     const appTsxPath = path.join(projectPath, "src", "App.tsx");
     const appTsxContent = `
-    import { BrowserRouter } from "react-router-dom";
-    import "./App.css";
-    import { AppRoutes } from "@/routes/AppRoutes";
+import { BrowserRouter } from "react-router-dom";
+import { AppRoutes } from "@/routes/AppRoutes";
+import { CssBaseline } from "@mui/material";
+
+function App() {
+  return (
+    <>
+      <CssBaseline/>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </>
+  );
+}
     
-    function App() {
-      return (
-        <>
-          <BrowserRouter>
-            <AppRoutes />
-          </BrowserRouter>
-        </>
-      );
-    }
-    
-    export default App;
-        `.trim();
+export default App;`.trim();
 
     await fs.writeFile(appTsxPath, appTsxContent, "utf-8");
     console.log("✅ App.tsx atualizado");
+
+    // 4. Sobrescrever main.tsx
+    const mainTsxPath = path.join(projectPath, "src", "main.tsx");
+    const mainTsxContent = `import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.tsx'
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+`;
+
+    await fs.writeFile(mainTsxPath, mainTsxContent, "utf-8");
+    console.log("✅ main.tsx atualizado");
   },
 };

@@ -10,6 +10,9 @@ import { updateAppTsx } from "./actions/update-app-tsx";
 import { updateHtml } from "./actions/update-html";
 import { createEnvFiles } from "./actions/create-env-files";
 import { updatePackageJson } from "./actions/update-packgejson";
+import { createServerNest } from "./actions/create-server-nest";
+import { installDepNestjs } from "./actions/install-dep-nestjs";
+import { createAxiosClient } from "./actions/create-axios-client";
 
 async function main() {
   const projectName = await createVite.runCommand();
@@ -22,7 +25,10 @@ async function main() {
   await updateAppTsx.runCommand(projectPath);
   await updateHtml.runCommand(projectPath, projectName);
   await createEnvFiles.runCommand(projectPath);
+  await createAxiosClient.runCommand(projectPath);
   await updatePackageJson.runCommand(projectPath);
+  await createServerNest.runCommand(projectPath);
+  await installDepNestjs.runCommand(projectPath);
 
   console.log(`✅ Projeto ${projectName} criado com sucesso!`);
   console.log(`\n👉 cd ${projectName}`);

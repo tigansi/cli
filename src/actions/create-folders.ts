@@ -13,6 +13,8 @@ export const createFolders = {
       "shared/services",
       "modules",
       "types",
+      "types/props",
+      "types/zod",
       "stores",
       "styles"
     ];
